@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const writableStream = fs.createWriteStream(__dirname + '/project-dist/style.css');
+let writableStream = fs.createWriteStream(__dirname + '/project-dist/style.css');
 
 // create a project-dist folder
 fs.mkdir(path.join(__dirname, 'project-dist'),
@@ -88,4 +88,19 @@ fs.readdir(__dirname + '/styles', (err, files) => {
     });
   });
 
+});
+
+
+// create index.html file
+// writableStream = fs.createWriteStream(__dirname + '/project-dist/index.html');
+
+// copy template.html content -> index.html
+fs.copyFile(__dirname + '/template.html', __dirname + '/project-dist/index.html', (error) => {
+  // incase of any error
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  // console.log("Copied Successfully!");
 });
